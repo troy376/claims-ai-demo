@@ -1,25 +1,23 @@
-import streamlit as st
-
-st.set_page_config(page_title="Claims AI Demo", layout="centered")
-
-st.title("Claims AI Demo")
-st.subheader("Automated Insurance Claim Review")
-
-st.markdown(
-    """
-    This demo simulates how AI can assist insurance claims teams by:
-    - Reviewing claim descriptions
-    - Flagging potential issues
-    - Improving speed and consistency
-    """
-)
-
-claim_text = st.text_area("Paste a claim description below:")
-
 if st.button("Analyze Claim"):
-    if claim_text.strip() == "":
-        st.warning("Please enter a claim description.")
-    else:
+    if "water damage" in claim_text.lower():
         st.success("Claim analyzed successfully.")
         st.write("**AI Summary:**")
-        st.write("No immediate red flags detected. Claim appears consistent.")
+        st.write("""
+✅ Claim analyzed successfully.
+
+**Key Findings:**
+- Water damage detected in kitchen affecting hardwood, baseboards, and drywall.
+- Moisture readings indicate high levels (18% main wall, 12% adjoining walls), remediation required.
+- Xactimate line items match policy coverage:
+    - Floor replacement ✅
+    - Baseboard replacement ✅
+    - Drywall repair ✅
+    - Mold remediation ✅
+- Policy coverage confirmed: Water Backup & Overflow endorsement.
+
+**Suggested Actions:**
+- Proceed with full remediation per policy limits.
+- Ensure documentation of drying process for claim support.
+        """)
+    else:
+        st.info("Claim analyzed successfully, no major issues detected.")
